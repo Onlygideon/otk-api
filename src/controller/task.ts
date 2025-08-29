@@ -56,7 +56,7 @@ export const fetchSingleTask = asyncHandler(async (req: Request, res: Response) 
     const { id } = req.params;
     if (!id) {
       res.status(400).json({
-        success: true,
+        success: false,
         error: "Task id is required",
       });
 
@@ -65,7 +65,10 @@ export const fetchSingleTask = asyncHandler(async (req: Request, res: Response) 
 
     const task = await Task.findOne({ where: { id: id } });
     if (!task) {
-      res.status(404).json({ message: "Task not found" });
+      res.status(404).json({
+        success:false, 
+        error: "Task not found" 
+      });
       return;
     }
 
@@ -87,7 +90,10 @@ export const updateTask = asyncHandler(async (req: Request, res: Response) => {
 
     const task = await Task.findOne({ where: { id: taskId } });
     if (!task) {
-      res.status(404).json({ message: "Task not found" });
+      res.status(404).json({
+        success:false, 
+        error: "Task not found" 
+      });
       return;
     }
 
@@ -107,7 +113,7 @@ export const deleteTask = asyncHandler(async (req: Request, res: Response) => {
     const { id } = req.params;
     if (!id) {
       res.status(400).json({
-        success: true,
+        success: false,
         error: "Task id is required",
       });
 
@@ -116,7 +122,10 @@ export const deleteTask = asyncHandler(async (req: Request, res: Response) => {
 
     const task = await Task.findOne({ where: { id: id } });
     if (!task) {
-      res.status(404).json({ message: "Task not found" });
+      res.status(404).json({
+        success:false, 
+        error: "Task not found" 
+      });
       return;
     }
 
