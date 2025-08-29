@@ -15,7 +15,7 @@ app.use("/api/task", taskRoutes);
 const PORT = env().PORT || 8080;
 
 sequelize
-  .sync({ force: false })
+  .sync({ force: true })
   .then(() => {
     console.log("Database connected");
     app.listen(PORT, () => {

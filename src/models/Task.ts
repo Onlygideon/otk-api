@@ -10,20 +10,20 @@ interface TaskAttributes {
   title: string;
   description: string | null;
   status: TaskStatus;
-  created_at?: Date;
-  updated_at?: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 interface TaskCreationAttributes
-  extends Optional<TaskAttributes, "id" | "description" | "status" | "created_at" | "updated_at"> {}
+  extends Optional<TaskAttributes, "id" | "description" | "status" | "createdAt" | "updatedAt"> {}
 
 export class Task extends Model<TaskAttributes, TaskCreationAttributes> implements TaskAttributes {
   public id!: number;
   public title!: string;
   public description!: string | null;
   public status!: TaskStatus;
-  public readonly created_at!: Date;
-  public readonly updated_at!: Date;
+  public readonly createdAt!: Date;
+  public readonly updatedAt!: Date;
 }
 
 Task.init(
@@ -36,6 +36,14 @@ Task.init(
       allowNull: false,
       defaultValue: "todo",
     },
+    createdAt: {
+      type: DataTypes.DATE,
+      defaultValue: new Date(),
+    },
+    updatedAt: {
+      type: DataTypes.DATE,
+      defaultValue: new Date(),
+    },
   },
-  { sequelize, tableName: "tasks" }
+  { sequelize, tableName: "tasks", timestamps: false }
 );

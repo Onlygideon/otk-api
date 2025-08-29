@@ -16,6 +16,7 @@ export const createTask = asyncHandler(async (req: Request, res: Response) => {
 
     return;
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error: "Internal error" });
     return;
   }
@@ -90,7 +91,7 @@ export const updateTask = asyncHandler(async (req: Request, res: Response) => {
       return;
     }
 
-    await task.update({ title, description, status });
+    await task.update({ title, description, status, updatedAt: new Date() });
 
     res.status(201).json({ success: true, data: "Task Updated" });
 
