@@ -31,7 +31,7 @@ export const fetchAllTasks = asyncHandler(async (req: Request, res: Response) =>
       where: {},
       limit: Number(limit),
       offset,
-      order: [["created_at", "DESC"]],
+      order: [["createdAt", "DESC"]],
     });
 
     res.status(200).json({
